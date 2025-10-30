@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\JobController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -18,3 +20,8 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+
+Route::get('/jobs', [JobController::class, 'index']);
+
+Route::get('/admin/jobs', [JobController::class, 'dashboard'])->middleware('isAdmin');

@@ -45,7 +45,9 @@
                                 @endif
                             </td>
                             <td class="py-4 px-4 text-gray-200 flex flex">
-                               <a class="mx-2 bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded text-sm transition duration-200" href="{{ route('applications.create') }}?id={{ $job->id }}">Lamar</a>
+                                @if (Auth::user()->role == 'USER')
+                                <a class="mx-2 bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded text-sm transition duration-200" href="{{ route('applications.create') }}?id={{ $job->id }}">Lamar</a>                                    
+                                @endif
                                @if (Auth::user()->role == 'ADMIN')
                                <a class="mx-2 bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded text-sm transition duration-200" href="{{ route('vacancies.edit', $job->id) }}">Edit</a>
                                <a class="mx-2 bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded text-sm transition duration-200" href="{{ route('vacancies.export', $job->id) }}">Export daftar pelamar</a>

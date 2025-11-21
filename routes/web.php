@@ -14,7 +14,7 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth', 'verified']);
 
 Route::middleware('auth')->group(function () {
     Route::middleware(['isAdmin'])->group(function () {
@@ -34,14 +34,15 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::resource('vacancies', VacancyController::class)->only('index', 'show');
+    Route::resource('vacancies', VacancyController::class)->only('index', 'show')->name('index', 'dashboard');
     Route::resource('applications', ApplicationController::class)->only(['create', 'store']);
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
 
 
 Route::get('/admin/jobs', [JobController::class, 'dashboard'])->middleware('isAdmin');
 
 Route::get('/mail', [SendMailController::class, 'sendMail']);
+

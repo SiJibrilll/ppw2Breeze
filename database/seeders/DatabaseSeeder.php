@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Vacancy;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Book;
 
 class DatabaseSeeder extends Seeder
 {
@@ -25,9 +26,17 @@ class DatabaseSeeder extends Seeder
 
         Vacancy::create([
             'title' => 'Project Manager',
-            'company'=> "Jasa raharja",
+            'company' => "Jasa raharja",
             'location' => "Bali",
             'salary' => "10000000"
         ]);
+
+        for ($i = 1; $i < 11; $i++) {
+            Book::create([
+                'title' => "Judul buku " . $i,
+                'description' => "Deskripsi Buku " . $i,
+                'author' => 'Penulis ' . $i,
+            ]);
+        }
     }
 }
